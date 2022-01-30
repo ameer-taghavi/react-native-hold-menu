@@ -1,4 +1,4 @@
-import { TextStyle } from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 import { TransformOriginAnchorPosition } from '../../utils/calculations';
 
 export type MenuItemProps = {
@@ -9,6 +9,7 @@ export type MenuItemProps = {
   isDestructive?: boolean;
   withSeparator?: boolean;
   textStyle?: TextStyle;
+  style?: ViewStyle;
 };
 
 export type MenuListProps = {

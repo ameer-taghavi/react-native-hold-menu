@@ -10,7 +10,7 @@ import { MenuItemProps } from './types';
 import { useInternal } from '../../hooks';
 import { CONTEXT_MENU_STATE, IS_IOS } from '../../constants';
 import isEqual from 'lodash.isequal';
-import { getColor } from './calculations';
+// import { getColor } from './calculations';
 
 const ItemComponent = IS_IOS ? TouchableOpacity : GHTouchableOpacity;
 // @ts-ignore
@@ -33,9 +33,9 @@ const MenuItemComponent = ({ item, isLast }: MenuItemComponentProps) => {
     };
   }, [theme, isLast, item]);
 
-  const textColor = useAnimatedStyle(() => {
-    return { color: getColor(item.isTitle, item.isDestructive, theme.type) };
-  }, [theme, item]);
+  // const textColor = useAnimatedStyle(() => {
+  //   return { color: getColor(item.isTitle, item.isDestructive, theme.type) };
+  // }, [theme, item]);
 
   const handleOnPress = useCallback(() => {
     if (!item.isTitle) {
@@ -51,12 +51,11 @@ const MenuItemComponent = ({ item, isLast }: MenuItemComponentProps) => {
       <AnimatedTouchable
         onPress={handleOnPress}
         activeOpacity={!item.isTitle ? 0.4 : 1}
-        style={[styles.menuItem, borderStyles]}
+        style={[styles.menuItem, borderStyles, item.style]}
       >
         <Animated.Text
           style={[
             item.isTitle ? styles.menuItemTitleText : styles.menuItemText,
-            textColor,
             item.textStyle,
           ]}
         >
