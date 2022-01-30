@@ -34,9 +34,9 @@ const MessageItemComp = ({
 
   const methodProps = useMemo(() => {
     return {
-      Reply: [message.id],
-      Copy: [message.text],
-      Edit: [message.id, message.text],
+      'پاسخ پیام': [message.id],
+      کپی: [message.text],
+      ویرایش: [message.id, message.text],
     };
   }, [message]);
 

@@ -9,12 +9,11 @@ import styles from './styles';
 import { MenuItemProps } from './types';
 import { useInternal } from '../../hooks';
 import { CONTEXT_MENU_STATE, IS_IOS } from '../../constants';
-import { BORDER_LIGHT_COLOR, BORDER_DARK_COLOR } from './constants';
 import isEqual from 'lodash.isequal';
 import { getColor } from './calculations';
-import { AnimatedIcon } from '../provider/Provider';
 
 const ItemComponent = IS_IOS ? TouchableOpacity : GHTouchableOpacity;
+// @ts-ignore
 const AnimatedTouchable = Animated.createAnimatedComponent(ItemComponent);
 
 type MenuItemComponentProps = {
@@ -26,8 +25,7 @@ const MenuItemComponent = ({ item, isLast }: MenuItemComponentProps) => {
   const { state, theme, menuProps } = useInternal();
 
   const borderStyles = useAnimatedStyle(() => {
-    const borderBottomColor =
-      theme.value === 'dark' ? BORDER_DARK_COLOR : BORDER_LIGHT_COLOR;
+    const borderBottomColor = theme.ViewStyle.value?.borderBottomColor;
 
     return {
       borderBottomColor,
@@ -36,7 +34,7 @@ const MenuItemComponent = ({ item, isLast }: MenuItemComponentProps) => {
   }, [theme, isLast, item]);
 
   const textColor = useAnimatedStyle(() => {
-    return { color: getColor(item.isTitle, item.isDestructive, theme.value) };
+    return { color: getColor(item.isTitle, item.isDestructive, theme.type) };
   }, [theme, item]);
 
   const handleOnPress = useCallback(() => {
@@ -59,13 +57,12 @@ const MenuItemComponent = ({ item, isLast }: MenuItemComponentProps) => {
           style={[
             item.isTitle ? styles.menuItemTitleText : styles.menuItemText,
             textColor,
+            item.textStyle,
           ]}
         >
           {item.text}
         </Animated.Text>
-        {!item.isTitle && item.icon && (
-          <AnimatedIcon name={item.icon} size={18} style={textColor} />
-        )}
+        {!item.isTitle && item.icon?.()}
       </AnimatedTouchable>
       {item.withSeparator && <Separator />}
     </>

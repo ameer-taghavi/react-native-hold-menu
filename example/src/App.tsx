@@ -38,7 +38,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
   const [state, setState] = useState<IAppContext>({
-    theme: 'light',
+    theme: 'dark',
     toggleTheme: () => {},
   });
 
@@ -70,7 +70,19 @@ const App = () => {
         <StatusBar
           barStyle={state.theme === 'light' ? 'dark-content' : 'light-content'}
         />
-        <HoldMenuProvider iconComponent={FeatherIcon} theme={state.theme}>
+        <HoldMenuProvider
+          iconComponent={FeatherIcon}
+          theme={{
+            type: 'dark',
+            ViewStyle: {
+              value: {
+                backgroundColor: '#111',
+                borderBottomColor: '#222',
+                borderColor: '#222',
+              },
+            },
+          }}
+        >
           <NavigationContainer>
             <Stack.Navigator
               initialRouteName="Home"

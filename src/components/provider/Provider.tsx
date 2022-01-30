@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { PortalProvider } from '@gorhom/portal';
 import Animated, { useSharedValue } from 'react-native-reanimated';
 import { InternalContext } from '../../context/internal';
@@ -21,7 +21,7 @@ export let AnimatedIcon: any;
 
 const ProviderComponent = ({
   children,
-  theme: selectedTheme,
+  theme,
   iconComponent,
 }: HoldMenuProviderProps) => {
   if (iconComponent)
@@ -30,7 +30,6 @@ const ProviderComponent = ({
   const state = useSharedValue<CONTEXT_MENU_STATE>(
     CONTEXT_MENU_STATE.UNDETERMINED
   );
-  const theme = useSharedValue<'light' | 'dark'>(selectedTheme || 'light');
   const menuProps = useSharedValue<MenuInternalProps>({
     itemHeight: 0,
     itemWidth: 0,
@@ -42,11 +41,6 @@ const ProviderComponent = ({
     transformValue: 0,
     actionParams: {},
   });
-
-  useEffect(() => {
-    theme.value = selectedTheme || 'light';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTheme]);
 
   const internalContextVariables = useMemo(
     () => ({

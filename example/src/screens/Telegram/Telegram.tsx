@@ -17,17 +17,19 @@ const Telegram = ({}: TelegramProps) => {
     () => [
       {
         text: 'Add Account',
-        icon: 'plus',
+        icon: null,
         onPress: () => {
           console.log('[ACTION]: Add Account');
         },
+        textStyle: { color: '#fff' },
       },
       {
         text: 'Enes Ozturk',
-        icon: 'user',
+        icon: null,
         onPress: () => {
           console.log('[ACTION]: Profile');
         },
+        textStyle: { color: '#fff' },
       },
     ],
     []
@@ -37,7 +39,7 @@ const Telegram = ({}: TelegramProps) => {
     () => [
       {
         text: 'Add Folder',
-        icon: 'plus',
+        icon: null,
         onPress: () => {
           console.log('[ACTION]: Add Folder');
         },

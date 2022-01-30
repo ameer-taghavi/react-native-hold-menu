@@ -36,6 +36,7 @@ import { leftOrRight } from './calculations';
 const MenuContainerComponent = IS_IOS ? BlurView : View;
 const AnimatedView = Animated.createAnimatedComponent<{
   animatedProps: Partial<{ blurType: string }>;
+  // @ts-ignore
 }>(MenuContainerComponent);
 
 const MenuListComponent = () => {
@@ -98,19 +99,12 @@ const MenuListComponent = () => {
 
   const animatedInnerContainerStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor:
-        theme.value === 'light'
-          ? IS_IOS
-            ? 'rgba(255, 255, 255, .75)'
-            : 'rgba(255, 255, 255, .95)'
-          : IS_IOS
-          ? 'rgba(0,0,0,0.5)'
-          : 'rgba(39, 39, 39, .8)',
+      backgroundColor: theme.ViewStyle.value?.backgroundColor,
     };
   }, [theme]);
 
   const animatedProps = useAnimatedProps(() => {
-    return { blurType: theme.value };
+    return { blurType: theme.type };
   }, [theme]);
 
   const setter = (items: MenuItemProps[]) => {

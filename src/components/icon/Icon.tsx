@@ -23,7 +23,7 @@ const Icon = ({ iconComponent, name }: IconProps) => {
 
   const iconProps = useAnimatedProps(() => {
     return {
-      color: theme.value === 'light' ? 'black' : 'white',
+      color: theme.type === 'light' ? 'black' : 'white',
     };
   }, [theme]);
 
