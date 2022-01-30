@@ -83,7 +83,7 @@ const MenuListComponent = () => {
 
     return {
       left: _leftPosition,
-      height: menuHeight.value + 5,
+      height: menuHeight.value + 10,
       opacity: opacityAnimation(),
       transform: [
         { translateX: translate.beginningTransformations.translateX },
