@@ -161,7 +161,7 @@ const HoldItemComponent = ({
           itemRectHeight.value +
           menuHeight +
           styleGuide.spacing * 2 +
-          50;
+          100;
 
         tY = topTransform > height ? height - topTransform : 0;
       } else {
