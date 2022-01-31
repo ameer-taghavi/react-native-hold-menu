@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import { ViewProps } from 'react-native';
+import { Platform, ViewProps } from 'react-native';
 
 //#region reanimated & gesture handler
 import {
@@ -161,7 +161,7 @@ const HoldItemComponent = ({
           itemRectHeight.value +
           menuHeight +
           styleGuide.spacing * 2 +
-          100;
+          (Platform.OS === 'ios' ? 50 : 100);
 
         tY = topTransform > height ? height - topTransform : 0;
       } else {
