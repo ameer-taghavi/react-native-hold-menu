@@ -196,11 +196,15 @@ const HoldItemComponent = ({
     });
   };
 
+  const dismissKeyboard = () => {
+    Keyboard.dismiss();
+  };
+
   const onCompletion = (isFinised: boolean) => {
     'worklet';
     const isListValid = items && items.length > 0;
     if (isFinised && isListValid) {
-      Keyboard.dismiss();
+      runOnJS(dismissKeyboard)();
       state.value = CONTEXT_MENU_STATE.ACTIVE;
       isActive.value = true;
       scaleBack();
