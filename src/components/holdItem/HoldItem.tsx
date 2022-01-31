@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import { Platform, ViewProps } from 'react-native';
+import { Keyboard, Platform, ViewProps } from 'react-native';
 
 //#region reanimated & gesture handler
 import {
@@ -200,6 +200,7 @@ const HoldItemComponent = ({
     'worklet';
     const isListValid = items && items.length > 0;
     if (isFinised && isListValid) {
+      Keyboard.dismiss();
       state.value = CONTEXT_MENU_STATE.ACTIVE;
       isActive.value = true;
       scaleBack();
