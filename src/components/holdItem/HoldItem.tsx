@@ -446,6 +446,6 @@ const HoldItemComponent = ({
   //#endregion
 };
 
-const HoldItem = memo(HoldItemComponent);
+const HoldItem = HoldItemComponent;
 
 export default HoldItem;
